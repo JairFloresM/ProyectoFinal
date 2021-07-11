@@ -35,14 +35,17 @@ public class Administrador {
             
             } catch (SQLException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                con.desconectarDB();
                 return false;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            con.desconectarDB();
             return false;
         }
-
+        
         return true;
+        
     }
 
 }
