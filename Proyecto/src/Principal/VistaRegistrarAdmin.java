@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -115,9 +116,13 @@ public class VistaRegistrarAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (!Txtnombre.getText().equals("")) {
+        String validarNombre = "^(([^\\s.,:;]+)\\s?)+$";
+        String validarEmail = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        String validarContra = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+        
+        if (!Txtnombre.getText().equals("") && Pattern.matches(validarNombre, Txtnombre.getText())) {
 
-            if (!Txtemail.getText().equals("")) {
+            if (!Txtemail.getText().equals("") && Pattern.matches(validarEmail, Txtemail.getText())) {
 
                 if (!Txtcontra.getText().equals("")) {
 
@@ -129,17 +134,14 @@ public class VistaRegistrarAdmin extends javax.swing.JFrame {
                     }
                     
                 } else {
-                    JOptionPane.showMessageDialog(null, "Espacio vacio, porfavor inserte una contraseña.");
+                    JOptionPane.showMessageDialog(null, "Nombre Invalido, Por favor revise el Campo 'nombre'");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Espacio vacio, porfavor inserte un email.");
-
+                JOptionPane.showMessageDialog(null, "Email Invalido, Por favor revise el Campo 'email'");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Espacio vacio, porfavor inserte un nombre.");
-
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
