@@ -158,7 +158,7 @@ public class VistaMenu extends javax.swing.JFrame {
 
     private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
         // TODO add your handling code here:
-        VistaClientes c = new VistaClientes();
+        VistaCliente c = new VistaCliente();
         this.setVisible(false);
         c.setVisible(true);
     }//GEN-LAST:event_jButtonClientesActionPerformed

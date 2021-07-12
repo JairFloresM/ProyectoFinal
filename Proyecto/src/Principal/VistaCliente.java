@@ -53,7 +53,6 @@ public class VistaCliente extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         imn_filtrar = new javax.swing.JMenuItem();
         imn_agregar = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,9 +92,6 @@ public class VistaCliente extends javax.swing.JFrame {
         });
         jMenu2.add(imn_agregar);
 
-        jMenuItem3.setText("Actualizar Cliente");
-        jMenu2.add(jMenuItem3);
-
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -127,17 +123,17 @@ public class VistaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imn_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_filtrarActionPerformed
-        VistaCliente_FiltrarCliente fil = new VistaCliente_FiltrarCliente();
-        fil.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_imn_filtrarActionPerformed
-
     private void imn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_agregarActionPerformed
         VistaCliente_AgregarCliente agregar = new VistaCliente_AgregarCliente();
         agregar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_imn_agregarActionPerformed
+
+    private void imn_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_filtrarActionPerformed
+        VistaCliente_FiltrarCliente fil = new VistaCliente_FiltrarCliente();
+        fil.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_imn_filtrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -178,7 +174,6 @@ public class VistaCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_clientes;
     // End of variables declaration//GEN-END:variables

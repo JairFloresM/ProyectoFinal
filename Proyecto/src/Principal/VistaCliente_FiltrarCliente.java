@@ -48,7 +48,6 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         imn_mostrar = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         imn_agregar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,9 +130,6 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         });
         jMenu4.add(imn_mostrar);
 
-        jMenuItem2.setText("Actualizar Clientes");
-        jMenu4.add(jMenuItem2);
-
         imn_agregar.setText("Agregar Cliente");
         imn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +181,7 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
                         .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
                 .addComponent(btn_consultar)
                 .addGap(16, 16, 16))
         );
@@ -258,17 +254,17 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_entradaActionPerformed
 
-    private void imn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_mostrarActionPerformed
-        VistaCliente mostrar = new VistaCliente();
-        mostrar.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_imn_mostrarActionPerformed
-
     private void imn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_agregarActionPerformed
         VistaCliente_AgregarCliente agregar = new VistaCliente_AgregarCliente();
         agregar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_imn_agregarActionPerformed
+
+    private void imn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_mostrarActionPerformed
+        VistaCliente mostrar = new VistaCliente();
+        mostrar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_imn_mostrarActionPerformed
 
     
     public static void main(String args[]) {
@@ -313,7 +309,6 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt_fecha;
