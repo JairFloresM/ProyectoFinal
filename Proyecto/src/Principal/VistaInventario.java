@@ -5,17 +5,76 @@
  */
 package Principal;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
  */
 public class VistaInventario extends javax.swing.JFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form Inventario
      */
+    private int codigo_p;
+    private String nombre_p;
+    private int cant_disp;
+
     public VistaInventario() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Productos en el Inventario");
+        cargarModelo();
+    }
+
+    private void cargarModelo() {
+        try {
+            modelo.addColumn("Codigo");
+            modelo.addColumn("Descripcion");
+            modelo.addColumn("Cantidad ");
+            modelo.addColumn("Precio");
+
+            ConectarBase con = new ConectarBase();
+            String datos[] = new String[4];
+            try {
+                con.conectarDB();
+                String sql = "SELECT * FROM producto ";
+                PreparedStatement ps = con.conexion.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                rs.last();
+                int count = rs.getRow();
+                if (count != 0) {
+                    rs.beforeFirst();
+                    while (rs.next()) {
+                        datos[0] = rs.getString("id_producto");
+                        datos[1] = rs.getString("descripcion");
+                        datos[2] = rs.getString("cantidad_disponible");
+                        datos[3] = rs.getString("precio_unitario");
+                        modelo.addRow(datos);
+                    }
+                    rs.close();
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null,"No hay datos registrados");
+                }
+                tablaRegistros.setModel(modelo);
+            } catch (SQLException ex) {
+                Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargar() {
+
     }
 
     /**
@@ -27,21 +86,74 @@ public class VistaInventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaRegistros = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        botonAtras = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tablaRegistros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaRegistros);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Productos guardados en el inventario");
+
+        botonAtras.setText("Atrás");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 661, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        // TODO add your handling code here:
+        VistaRegistroProducto registros= new VistaRegistroProducto();
+        this.setVisible(false);
+        registros.setVisible(true);
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +192,9 @@ public class VistaInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAtras;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaRegistros;
     // End of variables declaration//GEN-END:variables
 }
