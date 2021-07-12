@@ -16,6 +16,7 @@ public class VistaMenu extends javax.swing.JFrame {
      */
     public VistaMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -151,24 +152,28 @@ public class VistaMenu extends javax.swing.JFrame {
     private void jButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdminActionPerformed
         // TODO add your handling code here:
         VistaAdministrador v = new VistaAdministrador();
+        this.setVisible(false);
         v.setVisible(true);
     }//GEN-LAST:event_jButtonAdminActionPerformed
 
     private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
         // TODO add your handling code here:
         VistaClientes c = new VistaClientes();
+        this.setVisible(false);
         c.setVisible(true);
     }//GEN-LAST:event_jButtonClientesActionPerformed
 
     private void jButtonInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInvActionPerformed
         // TODO add your handling code here:
         VistaInventario i = new VistaInventario();
+        this.setVisible(false);
         i.setVisible(true);
     }//GEN-LAST:event_jButtonInvActionPerformed
 
     private void jButton4FactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4FactActionPerformed
         // TODO add your handling code here:
         VistaFacturacion f = new VistaFacturacion();
+        this.setVisible(false);
         f.setVisible(true);
     }//GEN-LAST:event_jButton4FactActionPerformed
 
