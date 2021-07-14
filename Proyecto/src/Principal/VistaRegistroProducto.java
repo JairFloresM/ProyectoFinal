@@ -137,24 +137,61 @@ public class VistaRegistroProducto extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        VistaInventario registros= new  VistaInventario();
+        VistaInventario registros = new VistaInventario();
         this.setVisible(false);
         registros.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        int cantidad = 0;
+        double precio = 0;
+        boolean enombre = true, ecant = true, eprecio = true;
+        try {
+            nombre = cajaTextoNombreP.getText();
 
-        if ( cajaTextoNombreP.getText().equals("") || cajaTextoCantidad.getText().equals("")||cajaTextoPrecio.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Rellene los campos");
-        } else {
+            //if (cajaTextoNombreP.getText().equals("") || cajaTextoCantidad.getText().equals("") || cajaTextoPrecio.getText().equals("")) {
+            //  JOptionPane.showMessageDialog(null, "Rellene los campos");
+            //} else {
+            //String nombre = cajaTextoNombreP.getText();
+            //int cantidad = Integer.parseInt(cajaTextoCantidad.getText());
+            //double precio = Double.parseDouble(cajaTextoPrecio.getText());
+            //Producto producto = new Producto();
+            //producto.agregarProducto(nombre, cantidad, precio);
+        } catch (NumberFormatException nfe) {
+            //JOptionPane.showMessageDialog(null, "Ingrese un nombre");
+            enombre = false;
+        }
+        try {
+            cantidad = Integer.parseInt(cajaTextoCantidad.getText());
 
+        } catch (NumberFormatException nfe) {
+            //JOptionPane.showMessageDialog(null, "Ingrese una cantidad");
+            ecant = false;
+        }
+        try {
+            precio = Double.parseDouble(cajaTextoPrecio.getText());
             
-            String nombre = cajaTextoNombreP.getText();
-            int cantidad = Integer.parseInt(cajaTextoCantidad.getText());
-            double precio= Double.parseDouble(cajaTextoPrecio.getText());
-            Producto producto=new Producto();
+        } catch (NumberFormatException nfe) {
+            //JOptionPane.showMessageDialog(null, "Ingrese un precio");
+            eprecio = false;
+        }
+        String mensajeerror = "Hay un error en ";
+        if (!enombre || !ecant || !eprecio) {
+            if (!enombre) {
+                mensajeerror += "nombre ";
+            }
+            if (!ecant) {
+                mensajeerror += "cantidad ";
+            }
+            if (!eprecio) {
+                mensajeerror += "precio ";
+            }
+            JOptionPane.showMessageDialog(null, mensajeerror);
+        } else {
+            Producto producto = new Producto();
             producto.agregarProducto(nombre, cantidad, precio);
         }
     }//GEN-LAST:event_botonGuardarActionPerformed

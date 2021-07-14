@@ -8,12 +8,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Producto {
-    
+
     private int codigo_p;
     private String descripcion;
     private int cant_disp;
     private double precio;
-    
+
     public void agregarProducto(String descripcion, int cant_disp, double precio) {
         ConectarBase con = new ConectarBase();
         try {
@@ -29,5 +29,19 @@ public class Producto {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void eliminarProducto(int id_producto) {
+        ConectarBase con = new ConectarBase();
+        try {
+            con.conectarDB();
+            String sql = "DELETE FROM producto WHERE id_producto=?;";
+            PreparedStatement ps = con.conexion.prepareStatement(sql);
+            ps.setInt(1, id_producto);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
