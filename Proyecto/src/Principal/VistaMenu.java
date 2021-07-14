@@ -172,7 +172,7 @@ public class VistaMenu extends javax.swing.JFrame {
 
     private void jButton4FactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4FactActionPerformed
         // TODO add your handling code here:
-        VistaFacturacion f = new VistaFacturacion();
+        VistaFactura f = new VistaFactura();
         this.setVisible(false);
         f.setVisible(true);
     }//GEN-LAST:event_jButton4FactActionPerformed

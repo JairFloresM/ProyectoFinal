@@ -46,9 +46,12 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         imn_mostrar = new javax.swing.JMenuItem();
         imn_agregar = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +121,15 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         jLabel2.setText("Opciones de Filtrado");
 
         jMenu3.setText("Menu Pricipal");
+
+        jMenuItem1.setText("Regresar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Clientes");
@@ -130,13 +142,29 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         });
         jMenu4.add(imn_mostrar);
 
-        imn_agregar.setText("Agregar Cliente");
+        imn_agregar.setText("Editar Clientes");
         imn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imn_agregarActionPerformed(evt);
             }
         });
         jMenu4.add(imn_agregar);
+
+        jMenuItem2.setText("Agregar Clientes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
+
+        jMenuItem3.setText("Eliminar Clientes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
 
         jMenuBar1.add(jMenu4);
 
@@ -255,7 +283,7 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_entradaActionPerformed
 
     private void imn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imn_agregarActionPerformed
-        VistaCliente_AgregarCliente agregar = new VistaCliente_AgregarCliente();
+        VistaCliente_EditarCliente agregar = new VistaCliente_EditarCliente();
         agregar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_imn_agregarActionPerformed
@@ -265,6 +293,24 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
         mostrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_imn_mostrarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        VistaMenu menu = new VistaMenu();
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        VistaCliente_Agregar agregar = new VistaCliente_Agregar();
+        agregar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        VistaCliente_Eliminar eliminar = new VistaCliente_Eliminar();
+        eliminar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     
     public static void main(String args[]) {
@@ -309,6 +355,9 @@ public class VistaCliente_FiltrarCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt_fecha;
