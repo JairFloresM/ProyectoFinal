@@ -114,21 +114,19 @@ public class VistaLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (!jTextField1.getText().equals("")) {
-            
+
             if (!jTextField2.getText().equals("")) {
-                
-               
-                    //PasswordAuthentication.hashearContra(jTextField2.getText());
-                    //Login login = new Login(jTextField1.getText(),);
-                    Login login = new Login();
-                    login.metodo2(jTextField1.getText(),PasswordAuthentication.hashearContra(jTextField2.getText()));
-               
-                
-            }else{
-                JOptionPane.showMessageDialog(null,"Ingrese su contraseña");
+
+                //PasswordAuthentication.hashearContra(jTextField2.getText());
+                //Login login = new Login(jTextField1.getText(),);
+                Login login = new Login();
+                login.nuevoLogin(jTextField1.getText(), PasswordAuthentication.hashearContra(jTextField2.getText()));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese su contraseña");
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Ingrese su usuario o email");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese su usuario o email");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

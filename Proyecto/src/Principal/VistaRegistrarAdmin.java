@@ -126,8 +126,9 @@ public class VistaRegistrarAdmin extends javax.swing.JFrame {
 
                 if (!Txtcontra.getText().equals("")) {
 
-                    Administrador admin = new Administrador(Txtnombre.getText(), Txtemail.getText(), Txtcontra.getText());
-                    if (admin.registrarAdministrador()) {
+                    Administrador admin = new Administrador();
+                    
+                    if (admin.registrarAdministrador(Txtnombre.getText(),  Txtcontra.getText(),Txtemail.getText())) {
                         JOptionPane.showMessageDialog(null, "El administrador se ha creado exitosamente", "Success!", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error al crear el Admisnistrador", "Error!", JOptionPane.ERROR_MESSAGE);
