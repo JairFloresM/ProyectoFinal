@@ -117,7 +117,7 @@ public class VistaInventario extends javax.swing.JFrame {
         jLabel1.setText("PRODUCTOS GUARDADOS EN EL INVENTARIO");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 600, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jonathan - David\\Desktop\\ProyectoFinal\\imagenes\\icons8-en-inventario-30.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icons8-en-inventario-30.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 750, 40));

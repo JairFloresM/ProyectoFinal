@@ -111,7 +111,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\admin-con-ruedas-dentadas.png"/>
+                  <Image iconType="3" name="/Iconos/admin-con-ruedas-dentadas.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -248,7 +248,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\icons8-usuario-60.png"/>
+                  <Image iconType="3" name="/Iconos/icons8-usuario-60.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -260,7 +260,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\2109144_email_mail_service_message_gmail_icon.png"/>
+                  <Image iconType="3" name="/Iconos/2109144_email_mail_service_message_gmail_icon.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -272,7 +272,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\icons8-libro-de-contrase&#xf1;a-64.png"/>
+                  <Image iconType="3" name="/Iconos/icons8-libro-de-contrase&#xf1;a-64.png"/>
                 </Property>
               </Properties>
               <Constraints>

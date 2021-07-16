@@ -166,7 +166,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\icons8-usuario-30.png"/>
+                  <Image iconType="3" name="/Iconos/icons8-usuario-30.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -178,7 +178,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\icons8-libro-de-contrase&#xf1;a-32.png"/>
+                  <Image iconType="3" name="/Iconos/icons8-libro-de-contrase&#xf1;a-32.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -208,7 +208,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Jonathan - David\Desktop\ProyectoFinal\imagenes\proceso-automatizado (1).png"/>
+                  <Image iconType="3" name="/Iconos/proceso-automatizado (1).png"/>
                 </Property>
               </Properties>
               <Constraints>
