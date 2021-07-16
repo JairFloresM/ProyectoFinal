@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 
 public class Login {
 
-    public void nuevoLogin(String auth, String contraseña) {
-
+    public boolean nuevoLogin(String auth, String contraseña) {
+        boolean resp = false;
         String sql;
 
         sql = "SELECT * FROM administrador WHERE nombre=? OR email=?";
@@ -27,23 +27,28 @@ public class Login {
 
             if (respuesta.next()) {
                 if (Integer.parseInt(respuesta.getString("cantidad_intentos")) >= 3) {
-                      JOptionPane.showMessageDialog(null,"Ha alcanzado el límite de intentos, le hemos enviado un correo con instrucciones para reactivar su cuenta");
-                      enviarCorreo(respuesta.getString("email"));
+                    JOptionPane.showMessageDialog(null, "Ha alcanzado el límite de intentos, le hemos enviado un correo con instrucciones para reactivar su cuenta");
+                    enviarCorreo(respuesta.getString("email"));
+                    resp = false;
                 } else {
                     if (respuesta.getString("contraseña").equals(contraseña)) {
                         JOptionPane.showMessageDialog(null, "Ha iniciado sesion con éxito");
+                        resp = true;
                     } else {
                         JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
                         intentoFallido(auth);
+                        resp = false;
                     }
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "No existe este usuario o email");
+                resp = false;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            resp = false;
         }
+        return resp;
     }
 
     public void intentoFallido(String auth) {
@@ -65,13 +70,13 @@ public class Login {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void enviarCorreo(String recipient){
-       
-        String sender="michia0378@gmail.com";
-        String host="localhost";
-        String subject="Cuenta bloqueda por exceso de intentos al ingresar";
-        String mensaje="Su cuenta ha sido bloqueda porque se ha registrado mas de 3 intentos de login fallidos, porfavor "
+
+    public void enviarCorreo(String recipient) {
+
+        String sender = "michia0378@gmail.com";
+        String host = "localhost";
+        String subject = "Cuenta bloqueda por exceso de intentos al ingresar";
+        String mensaje = "Su cuenta ha sido bloqueda porque se ha registrado mas de 3 intentos de login fallidos, porfavor "
                 + "comuníquese con un administrador para reestablecer su cuenta";
         NuevoMail.enviar(recipient, sender, host, subject, mensaje);
     }

@@ -3,19 +3,17 @@ package Principal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Producto {
-
-    private int codigo_p;
-    private String descripcion;
-    private int cant_disp;
-    private double precio;
+    
+    private ConectarBase con = new ConectarBase();
 
     public void agregarProducto(String descripcion, int cant_disp, double precio) {
-        ConectarBase con = new ConectarBase();
+        
         try {
             con.conectarDB();
             String sql = "INSERT INTO producto (descripcion,cantidad_disponible,precio_unitario) VALUES (?,?,?)";
@@ -31,7 +29,7 @@ public class Producto {
     }
 
     public void eliminarProducto(int id_producto) {
-        ConectarBase con = new ConectarBase();
+        
         try {
             con.conectarDB();
             String sql = "DELETE FROM producto WHERE id_producto=?;";
@@ -41,6 +39,49 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente");
         } catch (SQLException ex) {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<String> verificarProducto(int id) {
+        ArrayList<String> datos = new ArrayList<String>();
+        String sql = "SELECT * FROM producto WHERE id_producto = ?";
+        
+        try {
+            con.conectarDB();
+            PreparedStatement estado = con.conexion.prepareStatement(sql);
+            estado.setInt(1, id);
+            
+            ResultSet respuesta = estado.executeQuery();
+            if(respuesta.next()) {
+                datos.add(respuesta.getString("id_producto")+ ";" + respuesta.getString("descripcion")+ ";" + respuesta.getString("cantidad_disponible")+ ";" + respuesta.getString("precio_unitario"));
+                return datos;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        datos.clear();
+        con.desconectarDB();
+        return datos;
+    }
+    
+    
+    
+    public void editarProductos(String desc, int cant, double prec, int id) {
+        String sql = "UPDATE producto SET descripcion = ?, cantidad_disponible= ?, precio_unitario = ? WHERE id_producto = ?";
+        
+        try {
+            con.conectarDB();
+            PreparedStatement estado = con.conexion.prepareStatement(sql);
+            estado.setString(1, desc);
+            estado.setInt(2, cant);
+            estado.setDouble(3, prec);
+            estado.setInt(4, id);
+            
+            estado.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

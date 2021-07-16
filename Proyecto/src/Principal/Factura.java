@@ -59,28 +59,49 @@ public class Factura {
         return dato;
     }
     
-    public ArrayList<String> validarCantidad(ArrayList<String> dato, int cantS) {
-        String[] items = dato.get(0).split(";");
+    public ArrayList<String> validarCantidad(ArrayList<String> dato, int cantS, ArrayList<String> cantidades) {
+        String[] prods = dato.get(0).split(";");
+        String[] cants = null;
+        boolean filtro = false;
+        double neuvaCant;
+        int cantT = 0, cantA = 0;
 
         if (cantS > 0) {
-            int cantT = Integer.parseInt(items[items.length - 2]);
-            int cantA = cantT - cantS;
+            for(int i=0; i<cantidades.size(); i++) {
+                cants = cantidades.get(i).split(";");
+                if(prods[0].equals(cants[0])) {
+                    filtro = true;
+                    break;
+                } 
+            }
+            
+            if(filtro) {
+                cantT = Integer.parseInt(cants[cants.length - 1]);
+                cantA = cantT - cantS;
+            } else {
+                cantT = Integer.parseInt(prods[prods.length - 2]);
+                cantA = cantT - cantS;
+            }
+            
+            
             if (!(cantA <= 0) || cantA == 0) {
-                double precioT = cantS * Double.parseDouble(items[items.length - 1]);
-                dato.set(0, items[0] + ";" + items[1] + ";" + cantS + ";" + items[items.length - 1] + ";" + precioT + ";" + cantA);
-
+                double precioT = cantS * Double.parseDouble(prods[prods.length - 1]);
+                dato.set(0, prods[0] + ";" + prods[1] + ";" + cantS + ";" + prods[prods.length - 1] + ";" + precioT + ";" + cantA);
+                
                 return dato;
             }
+            
+            
 
             if ((cantA < 0) && cantT != 0) {
                 JOptionPane.showMessageDialog(null, "Solo se encuentran disponible " + cantT + " Productos.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "No hay mas productos disponibles", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese un numero mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
 
         dato.clear();
         return dato;
@@ -90,12 +111,7 @@ public class Factura {
         double precioTotal = 0;
         String []items = null;
         String sql = "INSERT INTO factura (id_cliente, fecha, precio_total) VALUES (?, ?, ?)";
-        int id_fact = 0;
-        
-        for(int i=0; i<datos.size(); i++) {
-            items = datos.get(i).split(";");
-            precioTotal += Double.parseDouble(items[items.length-2]);
-        }
+        int id_fact;
         
         try {
             con.conectarDB();
@@ -105,8 +121,13 @@ public class Factura {
             estado.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             estado.setDouble(3, precioTotal);
             
-            id_fact = estado.executeUpdate();;
-            return id_fact;
+            estado.executeUpdate();
+            ResultSet respuesta = estado.getGeneratedKeys();
+            
+            if (respuesta.next()) {
+                return id_fact = respuesta.getInt(1);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -180,5 +201,4 @@ public class Factura {
         
         return facts;
     }
-    
 }

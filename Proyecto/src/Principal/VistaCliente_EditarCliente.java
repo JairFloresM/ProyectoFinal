@@ -12,6 +12,7 @@ public class VistaCliente_EditarCliente extends javax.swing.JFrame {
     Cliente cliente = new Cliente();
     
     public VistaCliente_EditarCliente() {
+        super("Editar Clientes");
         initComponents();
         
         setResizable(false);
@@ -230,9 +231,10 @@ public class VistaCliente_EditarCliente extends javax.swing.JFrame {
                 if(!txt_tel.getText().equals("")) {
                     if(!txt_fec.getText().equals("")) {
                         cliente.editarCliente(id, txt_nom.getText(), txt_dir.getText(), txt_tel.getText(), txt_fec.getText());
-                        activarCampos();
-                        txt_id.setEnabled(true);
                         
+                        txt_id.setEnabled(true);
+                        vaciarCampos();
+                        bloquearCampos();
                     } else {
                         JOptionPane.showMessageDialog(null, "El campo de la fecha esta vacio", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -252,7 +254,6 @@ public class VistaCliente_EditarCliente extends javax.swing.JFrame {
             id = Integer.parseInt(txt_id.getText());
             datos = cliente.verificarCliente(id);
             if(datos.size() != 0) {
-                datos = cliente.verificarCliente(id);
                 
                 activarCampos();
                 setCampos();

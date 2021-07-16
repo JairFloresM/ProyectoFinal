@@ -21,6 +21,7 @@ public class NuevoMail {
         props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
         props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
         // creating session object to get properties
+        
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
             @Override
@@ -49,7 +50,6 @@ public class NuevoMail {
             Transport.send(message);
             System.out.println("Mail successfully sent");
         } catch (MessagingException mex) {
-            System.out.println(mex);
         }
     }
 }

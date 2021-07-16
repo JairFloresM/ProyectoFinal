@@ -1,6 +1,4 @@
-
 package Principal;
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,25 +8,26 @@ import javax.swing.table.DefaultTableModel;
 public class VistaFacturar extends javax.swing.JFrame {
 
     DefaultTableModel modeloTabla = new DefaultTableModel();
-    Factura factura = new Factura();
-    private ArrayList<String> datosTotales  = new ArrayList<String>();
-    
+    private Factura factura = new Factura();
+    private ArrayList<String> datosTotales = new ArrayList<String>();
+    private ArrayList<String> cantidadActual = new ArrayList<String>();
+
     public VistaFacturar() {
         initComponents();
-        
+
         setResizable(false);
         setSize(750, 480);
         this.setLocationRelativeTo(null);
-        
+
         modeloTabla.addColumn("Id Producto");
         modeloTabla.addColumn("Descripcion");
         modeloTabla.addColumn("Cantidad");
         modeloTabla.addColumn("Precio Unitario");
         modeloTabla.addColumn("Precio Total");
-        
+
         tbl_detFact.setModel(modeloTabla);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -220,22 +219,27 @@ public class VistaFacturar extends javax.swing.JFrame {
 
     private void btn_facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturarActionPerformed
         int id = 0;
-        String [] items = null;
-        if(datosTotales.size() != 0) {
+        String[] items = null;
+
+        for (int i = 0; i < datosTotales.size(); i++) {
+            System.out.println(datosTotales.get(i));
+        }
+
+        if (datosTotales.size() != 0) {
             id = factura.facturarProductos(datosTotales, Integer.parseInt(txt_cliente.getText()));
-            
-            if(id != 0) {
+            if (id != 0) {
                 factura.generarDetalleFactura(id, datosTotales);
-                
-                for(int i=0; i<datosTotales.size(); i++){
+
+                for (int i = 0; i < cantidadActual.size(); i++) {
                     items = datosTotales.get(i).split(";");
-                    factura.actualizarCantidades(Integer.parseInt(items[items.length-1]), Integer.parseInt(items[0]));
+                    factura.actualizarCantidades(Integer.parseInt(items[items.length - 1]), Integer.parseInt(items[0]));
                 }
-                
+
                 limpiarBotones();
                 limpiarTabla();
                 txt_cliente.setText("");
                 datosTotales.clear();
+                cantidadActual.clear();
                 JOptionPane.showMessageDialog(null, "Cliente Facturado con exito", "Succes", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido algun error en la factura", "Error", JOptionPane.ERROR_MESSAGE);
@@ -247,28 +251,33 @@ public class VistaFacturar extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_facturarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        ArrayList<String> datoProd  = new ArrayList<String>();
-        
+        ArrayList<String> datoProd = new ArrayList<String>();
+
         int cantA = 0;
+        String[] cantProd = null;
+
         try {
             int idCliente = Integer.parseInt(txt_cliente.getText());
-            
+
             try {
                 int idProducto = Integer.parseInt(txt_prod.getText());
-                
+
                 try {
                     int cantidad = Integer.parseInt(txt_cant.getText());
-                    
-                    if(factura.validarCliente(idCliente)) {
+
+                    if (factura.validarCliente(idCliente)) {
                         datoProd = factura.consultarProducto(idProducto);
-                        
-                        if(datoProd.size() != 0) {
-                            
-                            datoProd = factura.validarCantidad(datoProd, cantidad);
-                            
-                            if(datoProd.size() != 0) {
+
+                        if (datoProd.size() != 0) {
+                            datoProd = factura.validarCantidad(datoProd, cantidad, cantidadActual);
+                            menorCantidad(datoProd);
+                            if (cantidadActual.size() == 0) {
+                                cantidadActual.add(datoProd.get(0));
+                            }
+
+                            if (datoProd.size() != 0) {
                                 datosTotales.add(datoProd.get(0));
-                                
+
                                 llenarTabla(datoProd);
                                 limpiarBotones();
                                 datoProd.clear();
@@ -280,14 +289,14 @@ public class VistaFacturar extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "El id ingresado en el Cliente no existe, ingreselo nuevamente", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    
-                } catch(NumberFormatException nfe3) {
+
+                } catch (NumberFormatException nfe3) {
                     JOptionPane.showMessageDialog(null, "Ingrese la cantidad de Productos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch(NumberFormatException nfe2) {
+            } catch (NumberFormatException nfe2) {
                 JOptionPane.showMessageDialog(null, "Ingrese el id del Producto", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(NumberFormatException nfe1) {
+        } catch (NumberFormatException nfe1) {
             JOptionPane.showMessageDialog(null, "Ingrese el id del cliente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_agregarActionPerformed
@@ -318,19 +327,40 @@ public class VistaFacturar extends javax.swing.JFrame {
             modeloTabla.addRow(new Object[]{filasDatos[0], filasDatos[1], filasDatos[2], filasDatos[3], filasDatos[4]});
         }
     }
-    
+
     public void limpiarTabla() {
         for (int i = 0; i < tbl_detFact.getRowCount(); i++) {
             modeloTabla.removeRow(i);
             i -= 1;
         }
     }
-    
+
     public void limpiarBotones() {
         txt_prod.setText("");
         txt_cant.setText("");
     }
-    
+
+    public void menorCantidad(ArrayList<String> prods) {
+        String[] items1 = null;
+        String[] items2 = null;
+
+        try {
+            items1 = prods.get(0).split(";");
+
+            for (int i = 0; i < cantidadActual.size(); i++) {
+                items2 = cantidadActual.get(i).split(";");
+                if (items2[0].equals(items1[0])) {
+                    cantidadActual.set(i, prods.get(0));
+                } else {
+                    cantidadActual.add(prods.get(0));
+
+                }
+            }
+        } catch (IndexOutOfBoundsException ioobe) {
+
+        }
+
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
