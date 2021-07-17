@@ -221,19 +221,19 @@ public class VistaFacturar extends javax.swing.JFrame {
         int id = 0;
         String[] items = null;
 
-        for (int i = 0; i < datosTotales.size(); i++) {
-            System.out.println(datosTotales.get(i));
-        }
+        
 
         if (datosTotales.size() != 0) {
             id = factura.facturarProductos(datosTotales, Integer.parseInt(txt_cliente.getText()));
             if (id != 0) {
                 factura.generarDetalleFactura(id, datosTotales);
-
-                for (int i = 0; i < cantidadActual.size(); i++) {
-                    items = datosTotales.get(i).split(";");
-                    factura.actualizarCantidades(Integer.parseInt(items[items.length - 1]), Integer.parseInt(items[0]));
-                }
+                System.out.println(cantidadActual.size());
+                try {
+                    for (int i = 0; i < cantidadActual.size(); i++) {
+                        items = datosTotales.get(i).split(";");
+                        factura.actualizarCantidades(Integer.parseInt(items[items.length - 1]), Integer.parseInt(items[0]));
+                    }
+                } catch (IndexOutOfBoundsException IO) {}
 
                 limpiarBotones();
                 limpiarTabla();

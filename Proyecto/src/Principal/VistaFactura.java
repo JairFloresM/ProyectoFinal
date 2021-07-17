@@ -1,27 +1,29 @@
-
 package Principal;
 
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class VistaFactura extends javax.swing.JFrame {
 
     DefaultTableModel modeloTabla = new DefaultTableModel();
     private ArrayList<String> datos = new ArrayList<String>();
     Factura factura = new Factura();
-    
+
     public VistaFactura() {
         initComponents();
         setResizable(false);
         setSize(750, 480);
         this.setLocationRelativeTo(null);
-        
-        
+
         this.mostrarDatos();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +34,8 @@ public class VistaFactura extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -56,7 +60,7 @@ public class VistaFactura extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_facturas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 582, 321));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 582, 220));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,6 +73,22 @@ public class VistaFactura extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 740, 40));
+
+        jButton1.setText("Generar PDF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 160, 50));
+
+        jButton2.setText("Abrir PDF");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 160, 50));
 
         jMenuBar1.setForeground(new java.awt.Color(0, 102, 102));
 
@@ -109,7 +129,7 @@ public class VistaFactura extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -128,14 +148,61 @@ public class VistaFactura extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> datos = new ArrayList<String>();
+        ArrayList<String> datos2 = new ArrayList<String>();
+        String[] items = null;
+        String[] items2 = null;
+        Reporte reporte = new Reporte();
+        datos = reporte.consultarDetalle();
+        items = datos.get(0).split(";");
+        for (int i = 0; i < datos.size(); i++) {
+            items2 = datos.get(i).split(";");
+            if (items[0].equals(items2[0]) && items[1].equals(items2[1])) {
+                datos2.add(datos.get(i));
+            } else {
+                try {
+
+                    reporte.generar(datos2);
+                    
+                    datos2.clear();
+                    if (i < datos.size()) {
+                        items = datos.get(i).split(";");
+                        datos2.add(datos.get(i));
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DocumentException ex) {
+                    Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        try {
+            reporte.generar(datos2);
+            datos2.clear();
+            JOptionPane.showMessageDialog(null, "Se han generado los reportes para cada cliente facturado");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Reporte reporte = new Reporte();
+        reporte.abrir();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public void mostrarDatos() {
         modeloTabla.addColumn("Id Factura");
         modeloTabla.addColumn("Id Cliente");
         modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Precio Total");
-        
+
         tbl_facturas.setModel(modeloTabla);
-        
+
         datos = factura.consultarFacturas();
         String[] filasDatos = null;
         for (int i = 0; i < datos.size(); i++) {
@@ -143,8 +210,7 @@ public class VistaFactura extends javax.swing.JFrame {
             modeloTabla.addRow(new Object[]{filasDatos[0], filasDatos[1], filasDatos[2], filasDatos[3]});
         }
     }
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -178,6 +244,8 @@ public class VistaFactura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

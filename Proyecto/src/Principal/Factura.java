@@ -113,6 +113,11 @@ public class Factura {
         String sql = "INSERT INTO factura (id_cliente, fecha, precio_total) VALUES (?, ?, ?)";
         int id_fact;
         
+        for(int i=0; i<datos.size(); i++) {
+            items = datos.get(i).split(";");
+            precioTotal += Double.parseDouble(items[items.length-2]);
+        }
+        
         try {
             con.conectarDB();
             PreparedStatement estado = con.conexion.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
