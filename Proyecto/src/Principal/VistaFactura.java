@@ -82,7 +82,7 @@ public class VistaFactura extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 160, 50));
 
-        jButton2.setText("Abrir PDF");
+        jButton2.setText("Abrir Carpeta");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -156,43 +156,41 @@ public class VistaFactura extends javax.swing.JFrame {
         String[] items2 = null;
         Reporte reporte = new Reporte();
         datos = reporte.consultarDetalle();
+        
+        for(int i=0; i<datos.size(); i++) {
+            System.out.println(datos.get(i));
+        }
+        
         items = datos.get(0).split(";");
-        for (int i = 0; i < datos.size(); i++) {
-            items2 = datos.get(i).split(";");
-            if (items[0].equals(items2[0]) && items[1].equals(items2[1])) {
-                datos2.add(datos.get(i));
-            } else {
-                try {
-
-                    reporte.generar(datos2);
-                    
+        try {
+            for (int i = 0; i < datos.size(); i++) {
+                items2 = datos.get(i).split(";");
+                if (items[0].equals(items2[0]) && items[1].equals(items2[1])) {
+                    datos2.add(datos.get(i));
+                } else {
+                    reporte.generarDetalle(datos2);
                     datos2.clear();
                     if (i < datos.size()) {
                         items = datos.get(i).split(";");
                         datos2.add(datos.get(i));
                     }
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (DocumentException ex) {
-                    Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-        try {
-            reporte.generar(datos2);
-            datos2.clear();
+            reporte.generarDetalle(datos2);
+            datos = reporte.consultarFactura();
+            reporte.generarFactuar(datos);
             JOptionPane.showMessageDialog(null, "Se han generado los reportes para cada cliente facturado");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(VistaFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
+        datos2.clear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         Reporte reporte = new Reporte();
-        reporte.abrir();
+        reporte.abrirCarpeta();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void mostrarDatos() {
