@@ -1,6 +1,7 @@
 
-package Principal;
+package ModuloCliente;
 
+import Main.VistaMenu;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;

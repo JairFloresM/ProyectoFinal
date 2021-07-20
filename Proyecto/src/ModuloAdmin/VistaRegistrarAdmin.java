@@ -1,5 +1,9 @@
-package Principal;
+package ModuloAdmin;
 
+import ModuloAdmin.VistaEditarAdmin;
+import ModuloAdmin.VistaAdministrador;
+import ModuloAdmin.Administrador;
+import Main.VistaMenu;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 

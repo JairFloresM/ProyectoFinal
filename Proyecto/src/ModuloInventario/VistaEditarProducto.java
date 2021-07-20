@@ -1,5 +1,7 @@
-package Principal;
+package ModuloInventario;
 
+import ModuloInventario.Producto;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

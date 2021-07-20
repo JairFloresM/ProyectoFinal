@@ -1,4 +1,4 @@
-package Principal;
+package ModuloLogin;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

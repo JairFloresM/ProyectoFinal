@@ -1,6 +1,9 @@
 
-package Principal;
+package ModuloCliente;
 
+import ModuloCliente.VistaCliente_Eliminar;
+import ModuloCliente.VistaCliente_FiltrarCliente;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;

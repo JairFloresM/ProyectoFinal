@@ -1,5 +1,7 @@
-package Principal;
+package ModuloFacturacion;
 
+import ModuloFacturacion.Factura;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;

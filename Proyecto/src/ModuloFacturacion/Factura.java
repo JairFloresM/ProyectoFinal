@@ -1,6 +1,7 @@
 
-package Principal;
+package ModuloFacturacion;
 
+import ModuloLogin.ConectarBase;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

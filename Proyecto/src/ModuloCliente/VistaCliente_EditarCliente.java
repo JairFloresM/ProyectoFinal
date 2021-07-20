@@ -1,6 +1,11 @@
 
-package Principal;
+package ModuloCliente;
 
+import ModuloCliente.VistaCliente_Agregar;
+import ModuloCliente.VistaCliente;
+import ModuloCliente.VistaCliente_Eliminar;
+import ModuloCliente.VistaCliente_FiltrarCliente;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

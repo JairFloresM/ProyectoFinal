@@ -1,6 +1,8 @@
 
-package Principal;
+package ModuloCliente;
 
+import ModuloCliente.VistaCliente_FiltrarCliente;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

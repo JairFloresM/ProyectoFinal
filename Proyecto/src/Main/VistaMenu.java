@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package Main;
+
+import ModuloCliente.VistaCliente;
+import ModuloAdmin.VistaAdministrador;
+import ModuloInventario.VistaInventario;
+import ModuloFacturacion.VistaFactura;
 
 /**
  *
@@ -87,8 +92,6 @@ public class VistaMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Gill Sans MT", 1, 24)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 20));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jonathan - David\\Downloads\\proceso-automatizado.png")); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 40));

@@ -1,5 +1,8 @@
-package Principal;
+package ModuloFacturacion;
 
+import ModuloFacturacion.VistaFacturar;
+import ModuloFacturacion.Factura;
+import Main.VistaMenu;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

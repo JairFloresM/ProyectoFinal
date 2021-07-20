@@ -1,6 +1,7 @@
 
-package Principal;
+package ModuloCliente;
 
+import ModuloLogin.ConectarBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,5 +1,8 @@
-package Principal;
+package ModuloAdmin;
 
+import ModuloAdmin.VistaAdministrador;
+import ModuloAdmin.Administrador;
+import Main.VistaMenu;
 import javax.swing.JOptionPane;
 
 public class VistaEditarAdmin extends javax.swing.JFrame {

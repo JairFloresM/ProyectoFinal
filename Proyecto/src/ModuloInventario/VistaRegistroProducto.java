@@ -1,5 +1,10 @@
-package Principal;
+package ModuloInventario;
 
+import ModuloInventario.VistaInventario;
+import ModuloInventario.VistaEliminarProducto;
+import ModuloInventario.VistaEditarProducto;
+import ModuloInventario.Producto;
+import Main.VistaMenu;
 import javax.swing.JOptionPane;
 
 public class VistaRegistroProducto extends javax.swing.JFrame {

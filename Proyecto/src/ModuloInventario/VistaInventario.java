@@ -1,6 +1,11 @@
 
-package Principal;
+package ModuloInventario;
 
+import ModuloInventario.VistaEliminarProducto;
+import ModuloInventario.VistaEditarProducto;
+import ModuloInventario.Producto;
+import ModuloLogin.ConectarBase;
+import Main.VistaMenu;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

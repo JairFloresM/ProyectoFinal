@@ -1,5 +1,7 @@
-package Principal;
+package ModuloAdmin;
 
+import ModuloAdmin.Administrador;
+import Main.VistaMenu;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 

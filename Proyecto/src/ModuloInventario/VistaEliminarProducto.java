@@ -1,5 +1,8 @@
-package Principal;
+package ModuloInventario;
 
+import ModuloInventario.VistaEditarProducto;
+import ModuloInventario.Producto;
+import Main.VistaMenu;
 import javax.swing.JOptionPane;
 
 public class VistaEliminarProducto extends javax.swing.JFrame {
