@@ -116,6 +116,7 @@ public class Factura {
         int id_fact;
         
         DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println("ssds");
         
         for(int i=0; i<datos.size(); i++) {
             items = datos.get(i).split(";");
