@@ -15,8 +15,8 @@ public class ConectarBase {
         final String controlador = "com.mysql.jdbc.Driver";
         try {
             Class.forName(controlador);
-            final String url_db = "jdbc:mysql://localhost:3306/egph_juegos";
-            conexion = DriverManager.getConnection(url_db, "utp2021", "12345");
+            final String url_db = "jdbc:mysql://localhost:6060/egph_juegos";
+            conexion = DriverManager.getConnection(url_db, "root", "Rocky507");
             //JOptionPane.showMessageDialog(null,"Conexion exitosa");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConectarBase.class.getName()).log(Level.SEVERE, null, ex);
