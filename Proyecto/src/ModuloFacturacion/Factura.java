@@ -6,6 +6,7 @@ import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -114,10 +115,14 @@ public class Factura {
         String sql = "INSERT INTO factura (id_cliente, fecha, precio_total) VALUES (?, ?, ?)";
         int id_fact;
         
+        DecimalFormat df = new DecimalFormat("#.00");
+        
         for(int i=0; i<datos.size(); i++) {
             items = datos.get(i).split(";");
             precioTotal += Double.parseDouble(items[items.length-2]);
         }
+        
+        precioTotal += Double.parseDouble(df.format(precioTotal));
         
         try {
             con.conectarDB();
